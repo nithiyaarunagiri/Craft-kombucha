@@ -39,17 +39,36 @@
     [data-theme="dark"] {
       --bg-primary: #0d1f17;
       --bg-secondary: #0a1810;
-      --text-primary: #e8f5ec;
-      --text-secondary: #9dbfa9;
-      --text-light: #5a7a68;
-      --border-color: #1c3326;
+      --text-primary: #f0fdf4;
+      --text-secondary: #a3c9b3;
+      --text-light: #7da58e;
+      --border-color: #1f3d2e;
+      --accent: #52b788;
+      --accent-light: #74c69d;
+      --accent-dark: #95d5b2;
+      --accent-soft: #142e21;
       --shadow: rgba(0, 0, 0, 0.6);
-      --card-bg: #0d1f17;
+      --card-bg: #11281e;
       --section-bg: #0a1810;
       --navbar-bg: #0d1f17;
       --navbar-border: #1c3326;
-      --accent-soft: #14291d;
       --logo-caps-color: #a8f0c6;
+    }
+
+    [data-theme="dark"] .section-title i,
+    [data-theme="dark"] .featured-header h2 span,
+    [data-theme="dark"] .why-header h2 span,
+    [data-theme="dark"] .reviews-header h2 span,
+    [data-theme="dark"] .club-header h2 span,
+    [data-theme="dark"] .stat-item .number,
+    [data-theme="dark"] .customer-fave span {
+      color: #52b788 !important;
+    }
+    [data-theme="dark"] .eyebrow,
+    [data-theme="dark"] .hero-badge {
+      background: #142e21;
+      color: #52b788;
+      border: 1px solid rgba(82, 183, 136, 0.35);
     }
 
     [dir="rtl"] { text-align: right; }
@@ -257,13 +276,19 @@
 
     /* ===== HERO ===== */
     .hero-full {
-      width: 100%; height: 100vh;
-      min-height: 600px; max-height: 900px;
+      width: 100%;
+      min-height: 620px;
+      height: 82vh;
+      max-height: 780px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-image: url("images/hero 1.jpg");
       background-size: cover; background-position: center;
       background-attachment: fixed;
       position: relative; overflow: hidden;
       background-repeat: no-repeat;
+      box-sizing: border-box;
     }
     .hero-full::before {
       content: ''; position: absolute; inset: 0;
@@ -959,6 +984,25 @@
       border-color: var(--accent);
       box-shadow: 0 22px 44px var(--shadow);
     }
+    .why-card .wc-img {
+      width: 100%;
+      height: 140px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 14px var(--shadow);
+    }
+    .why-card .wc-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .why-card:hover .wc-img img {
+      transform: scale(1.08);
+    }
     .why-card .wc-icon {
       width: 72px; height: 72px;
       border-radius: 50%;
@@ -975,6 +1019,244 @@
       color: #fff;
       transform: rotate(-8deg) scale(1.08);
       border-color: var(--highlight);
+    }
+
+    /* ===== REVIEWS & TESTIMONIALS SECTION ===== */
+    .reviews-section {
+      padding: 5rem 0;
+      background: var(--bg-primary);
+      transition: background var(--transition);
+    }
+    .reviews-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+    .reviews-header h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.5px;
+    }
+    .reviews-header h2 span { color: var(--accent); }
+    .reviews-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .review-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 3px;
+    }
+    .review-text {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .customer-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--border-color);
+    }
+    .customer-avatar {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+    .customer-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .customer-details strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+    .customer-details span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .customer-fave {
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ===== CLUB & SUBSCRIPTION SECTION ===== */
+    .club-section {
+      padding: 5rem 0;
+      background: var(--section-bg);
+      transition: background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .club-box {
+      background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+      border-radius: 28px;
+      padding: 3.5rem 3rem;
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(27, 67, 50, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .club-box::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.12);
+      pointer-events: none;
+    }
+    .club-content .club-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.25);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fbbf24;
+      padding: 0.4rem 1.1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+    }
+    .club-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+    .club-content h2 span { color: #f59e0b; }
+    .club-content p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .club-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .club-perk-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #e8f5ec;
+    }
+    .club-perk-item i {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .club-card-preview {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .club-card-preview h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .club-price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #f59e0b;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .club-price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .club-card-preview p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 1.5rem;
+    }
+    .club-btn {
+      background: #f59e0b;
+      color: #1b4332;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      width: 100%;
+      transition: 0.25s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .club-btn:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(245, 158, 11, 0.4);
+    }
+
+    @media (max-width: 1024px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .club-box { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+    }
+    @media (max-width: 767px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+      .club-perks { grid-template-columns: 1fr; }
+      .club-content h2 { font-size: 2rem; }
     }
     .why-card h3 {
       font-size: 1.05rem;
@@ -1289,26 +1571,42 @@
   <nav class="navbar">
     <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; width:100%; padding:0;">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBg" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottle" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeaf" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottle" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRing)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottle)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottle)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGold)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBg)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGold)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottle)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGold)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGold)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1351,26 +1649,42 @@
   <div class="mobile-nav-drawer" id="mobileNav">
     <div class="drawer-header">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRingM" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBgM" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGoldM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottleM" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeafM" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottleM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRingM)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleM)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleM)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGoldM)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBgM)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldM)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleM)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldM)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldM)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1676,24 +1990,143 @@
 
       <div class="why-grid">
         <div class="why-card">
-          <div class="wc-icon"><i class="fas fa-flask"></i></div>
+          <div class="wc-img">
+            <img src="images/process-live.jpg" alt="Small-Batch Kombucha Fermentation">
+          </div>
           <h3>Small-Batch Brewed</h3>
           <p>Every batch is fermented in-house in small glass vessels — never mass-produced, never rushed.</p>
         </div>
         <div class="why-card">
-          <div class="wc-icon"><i class="fas fa-seedling"></i></div>
+          <div class="wc-img">
+            <img src="images/flavor-citrus.jpg" alt="Whole Cold-Pressed Fruit">
+          </div>
           <h3>Real Ingredients</h3>
           <p>Whole fruit, fresh herbs, and raw cane sugar. No concentrates, no artificial flavors, ever.</p>
         </div>
         <div class="why-card">
-          <div class="wc-icon"><i class="fas fa-heartbeat"></i></div>
+          <div class="wc-img">
+            <img src="images/process-intro.jpg" alt="Living SCOBY Culture">
+          </div>
           <h3>Live &amp; Raw</h3>
           <p>Unpasteurized and full of live cultures — good for your gut and full of natural fizz.</p>
         </div>
         <div class="why-card">
-          <div class="wc-icon"><i class="fas fa-store"></i></div>
+          <div class="wc-img">
+            <img src="images/taproom-taps.jpg" alt="Fresh Taproom Pours and Growler Fills">
+          </div>
           <h3>Taproom Fresh</h3>
           <p>Pour straight from our taps, or grab bottles to go. Refills welcome — bring your growler.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ===== REVIEWS & TESTIMONIALS (Customer Love) ======= -->
+  <!-- ==================================================== -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="reviews-header">
+        <span class="eyebrow"><i class="fas fa-heart"></i> Community Love</span>
+        <h2>What Our Drinkers <span>Are Saying</span></h2>
+        <p>Over 10,000 bottles poured and thousands of happy regulars. Here is why our community keeps sipping Craft Kombucha.</p>
+      </div>
+
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">"The Ginger Lemon Sunrise completely replaced my morning coffee. It has real warming ginger kick, perfect effervescence, and zero sugar crash. My gut has felt so much lighter!"</p>
+          <div class="customer-info">
+            <div class="customer-avatar">
+              <img src="images/customer 1.jpg" alt="Elena Rostova">
+            </div>
+            <div class="customer-details">
+              <strong>Elena Rostova</strong>
+              <span>Verified Customer &bull; Manchester</span>
+              <div class="customer-fave"><i class="fas fa-wine-bottle"></i> Ginger Lemon Sunrise</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">"I have sampled craft kombucha in Seattle, Berlin, and London. Craft Kombucha is the most balanced I have found. Deep fruit notes without that harsh artificial sourness."</p>
+          <div class="customer-info">
+            <div class="customer-avatar">
+              <img src="images/customer 2.jpg" alt="Marcus Vance">
+            </div>
+            <div class="customer-details">
+              <strong>Marcus Vance</strong>
+              <span>Club Subscriber &bull; Leeds</span>
+              <div class="customer-fave"><i class="fas fa-wine-bottle"></i> Wild Raspberry Hibiscus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">"The taproom patio is our weekend happy place! We bring our golden retriever, order a tasting flight of four, and fill our 64oz growler for the week. Turmeric Orange Glow is unmatched!"</p>
+          <div class="customer-info">
+            <div class="customer-avatar">
+              <img src="images/customer 3.jpg" alt="Sophia Chen">
+            </div>
+            <div class="customer-details">
+              <strong>Sophia Chen</strong>
+              <span>Taproom Regular &bull; Manchester</span>
+              <div class="customer-fave"><i class="fas fa-wine-bottle"></i> Turmeric Orange Glow</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ===== THE CRAFT KOMBUCHA CLUB (Subscription) ======= -->
+  <!-- ==================================================== -->
+  <section class="club-section">
+    <div class="container">
+      <div class="club-box">
+        <div class="club-content">
+          <span class="club-badge"><i class="fas fa-box-open"></i> Monthly Ferment Club</span>
+          <h2>Cold-Pressed Pours <span>Delivered To You</span></h2>
+          <p>Never run out of gut-loving bubbles. Get our seasonal small batches delivered fresh to your door each month with subscriber-only perks.</p>
+          
+          <div class="club-perks">
+            <div class="club-perk-item">
+              <i class="fas fa-check-circle"></i>
+              <span>6 or 12 Fresh Pours Every Month</span>
+            </div>
+            <div class="club-perk-item">
+              <i class="fas fa-check-circle"></i>
+              <span>20% Off All Taproom Growler Fills</span>
+            </div>
+            <div class="club-perk-item">
+              <i class="fas fa-check-circle"></i>
+              <span>First Access To Seasonal Limited Brews</span>
+            </div>
+            <div class="club-perk-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Free Cold Shipping &bull; Pause Anytime</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card-preview">
+          <h3>The Taster Box</h3>
+          <div class="club-price">$24<span>/month</span></div>
+          <p>6 &times; 16 oz seasonal bottles + free growler refill token on your birthday.</p>
+          <a href="contact.html" class="club-btn">
+            <i class="fas fa-paper-plane"></i> Join The Club
+          </a>
         </div>
       </div>
     </div>
@@ -1720,26 +2153,42 @@
     <div class="footer-container">
       <div class="footer-box">
         <a href="index.html" class="footer-logo-link" onclick="scrollToTop()">
-          <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="logoRingF" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#52b788"/>
-                <stop offset="100%" stop-color="#2d6a4f"/>
+              <radialGradient id="logoBgF" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="70%" stop-color="#1b4332"/>
+                <stop offset="100%" stop-color="#0a1d14"/>
+              </radialGradient>
+              <linearGradient id="logoGoldF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fcd34d"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#d97706"/>
               </linearGradient>
-              <linearGradient id="logoBottleF" x1="50%" y1="100%" x2="50%" y2="0%">
-                <stop offset="0%" stop-color="#1b4332"/>
-                <stop offset="55%" stop-color="#2d6a4f"/>
-                <stop offset="100%" stop-color="#52b788"/>
+              <linearGradient id="logoLeafF" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#74c69d"/>
+              </linearGradient>
+              <linearGradient id="logoBottleF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#52b788"/>
+                <stop offset="50%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#143728"/>
               </linearGradient>
             </defs>
-            <circle cx="24" cy="24" r="21" fill="url(#logoRingF)"/>
-            <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-            <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleF)"/>
-            <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleF)"/>
-            <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-            <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-            <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-            <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+            <circle cx="24" cy="24" r="22" stroke="url(#logoGoldF)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+            <circle cx="24" cy="24" r="20" fill="url(#logoBgF)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+            <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldF)"/>
+            <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+            <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleF)"/>
+            <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldF)" opacity="0.88"/>
+            <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+            <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+            <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldF)"/>
           </svg>
           <span class="logo-text">
             <span class="logo-script">Craft</span>

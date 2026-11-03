@@ -39,17 +39,32 @@
     [data-theme="dark"] {
       --bg-primary: #0d1f17;
       --bg-secondary: #0a1810;
-      --text-primary: #e8f5ec;
-      --text-secondary: #9dbfa9;
-      --text-light: #5a7a68;
-      --border-color: #1c3326;
+      --text-primary: #f0fdf4;
+      --text-secondary: #a3c9b3;
+      --text-light: #7da58e;
+      --border-color: #1f3d2e;
+      --accent: #52b788;
+      --accent-light: #74c69d;
+      --accent-dark: #95d5b2;
+      --accent-soft: #142e21;
       --shadow: rgba(0, 0, 0, 0.6);
-      --card-bg: #0d1f17;
+      --card-bg: #11281e;
       --section-bg: #0a1810;
       --navbar-bg: #0d1f17;
       --navbar-border: #1c3326;
-      --accent-soft: #14291d;
       --logo-caps-color: #a8f0c6;
+    }
+
+    [data-theme="dark"] .section-header h2 span,
+    [data-theme="dark"] .product-body .product-tag,
+    [data-theme="dark"] .filter-tab.active {
+      color: #52b788 !important;
+    }
+    [data-theme="dark"] .eyebrow,
+    [data-theme="dark"] .hero-eyebrow {
+      background: #142e21;
+      color: #52b788;
+      border: 1px solid rgba(82, 183, 136, 0.35);
     }
 
     [dir="rtl"] { text-align: right; }
@@ -258,8 +273,12 @@
     /* ===== 1. PAGE HERO (background image) =============== */
     /* ===================================================== */
     .products-hero {
-      padding: 5rem 0 4.5rem;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
+      padding: 5rem 0;
       overflow: hidden;
       text-align: center;
       background-image: url("images/hero 4.jpg");
@@ -267,6 +286,12 @@
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+      box-sizing: border-box;
+    }
+    .products-hero .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
     }
     .products-hero::before {
       content: '';
@@ -317,17 +342,17 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
     }
     @media (max-width: 1024px) {
-      .products-hero { background-attachment: scroll; }
+      .products-hero { background-attachment: scroll; min-height: 440px; }
     }
     @media (max-width: 767px) {
-      .products-hero { padding: 3.5rem 0 3rem; }
-      .products-hero h1 { font-size: 2rem; }
-      .products-hero p { font-size: 0.92rem; }
+      .products-hero { min-height: 380px; padding: 3.5rem 0 3rem; }
+      .products-hero h1 { font-size: 2.2rem; }
+      .products-hero p { font-size: 0.95rem; }
     }
     @media (max-width: 480px) {
-      .products-hero { padding: 2.5rem 0 2.5rem; }
-      .products-hero h1 { font-size: 1.6rem; }
-      .products-hero p { font-size: 0.85rem; }
+      .products-hero { min-height: 320px; padding: 2.5rem 0 2.5rem; }
+      .products-hero h1 { font-size: 1.75rem; }
+      .products-hero p { font-size: 0.88rem; }
     }
 
     /* ===================================================== */
@@ -370,19 +395,44 @@
       color: var(--accent);
       transform: translateY(-2px);
     }
-    .filter-tab.active {
+       .filter-tab.active {
       background: var(--accent);
       border-color: var(--accent);
-      color: #fff;
+      color: #ffffff !important; /* Forces text to be white */
       box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
+      padding-right: 1.8rem; /* Gives a little extra room for the text */
     }
-    .filter-tab.active i { color: #fff; }
-    [data-theme="dark"] .filter-tab.active { box-shadow: 0 8px 20px rgba(82, 183, 136, 0.4); }
+    .filter-tab.active i { 
+      color: #ffffff !important; 
+    }
+    [data-theme="dark"] .filter-tab.active { 
+  box-shadow: 0 8px 20px rgba(82, 183, 136, 0.4);
+  color: #ffffff !important; 
+  background: var(--accent);
+  border-color: var(--accent);
+}
     @media (max-width: 767px) {
       .filter-bar { padding: 1.5rem 0 0.5rem; top: 68px; }
       .filter-tabs { gap: 0.5rem; }
       .filter-tab { padding: 0.6rem 1.2rem; font-size: 0.78rem; }
       .filter-tab i { font-size: 0.75rem; }
+    }
+
+        .filter-tab {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.7rem 1.6rem;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap; /* <--- ADD THIS LINE */
     }
 
     /* ===================================================== */
@@ -568,6 +618,99 @@
       gap: 4px;
       margin-bottom: 0.9rem;
     }
+    
+    /* ===== PRODUCT PRICING & BUNDLES ===== */
+    .pricing-guide-strip {
+      background: var(--accent-soft);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.2rem 1.8rem;
+      margin: 2rem 0 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      gap: 1.5rem;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .pricing-tier {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pricing-tier-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .pricing-tier-text strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+    .pricing-tier-text span {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .product-pricing {
+      margin: 0.6rem 0 0.9rem;
+      padding: 0.75rem 0.9rem;
+      background: var(--accent-soft);
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      transition: border-color 0.3s;
+    }
+    .product-card:hover .product-pricing {
+      border-color: var(--accent);
+    }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .price-main {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    [data-theme="dark"] .price-main {
+      color: #52b788;
+    }
+    .price-size {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .price-packs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pack-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      background: var(--card-bg);
+      padding: 0.22rem 0.55rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .pack-pill {
+      background: #183325;
+      color: #e8f5ec;
+      border-color: #244634;
+    }
+
     .product-notes span {
       font-size: 0.65rem;
       font-weight: 700;
@@ -578,7 +721,8 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-    [data-theme="dark"] .product-notes span { color: var(--text-secondary); }
+    [data-theme="dark"] 
+    .product-notes span { color: var(--text-secondary); }
 
     .product-footer {
       display: flex;
@@ -626,7 +770,8 @@
       .product-body { padding: 1rem 1rem 1.1rem; }
       .product-body h3 { font-size: 0.95rem; }
       .product-body p { font-size: 0.78rem; margin-bottom: 0.8rem; }
-      .product-notes span { font-size: 0.6rem; padding: 0.2rem 0.55rem; }
+      
+    .product-notes span { font-size: 0.6rem; padding: 0.2rem 0.55rem; }
       .product-btn { font-size: 0.7rem; padding: 0.5rem 1rem; }
     }
     @media (max-width: 480px) {
@@ -950,26 +1095,42 @@
   <nav class="navbar">
     <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; width:100%; padding:0;">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBg" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottle" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeaf" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottle" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRing)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottle)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottle)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGold)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBg)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGold)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottle)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGold)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGold)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1012,26 +1173,42 @@
   <div class="mobile-nav-drawer" id="mobileNav">
     <div class="drawer-header">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRingM" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBgM" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGoldM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottleM" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeafM" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottleM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRingM)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleM)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleM)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGoldM)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBgM)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldM)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleM)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldM)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldM)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1085,7 +1262,7 @@
   <div class="filter-bar">
     <div class="container">
       <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">
+               <button class="filter-tab active" data-filter="all">
           <i class="fas fa-th-large"></i> All Flavors
         </button>
         <button class="filter-tab" data-filter="citrus">
@@ -1132,9 +1309,19 @@
             <div class="product-notes">
               <span>Zingy</span><span>Crisp</span><span>High Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1151,9 +1338,19 @@
             <div class="product-notes">
               <span>Dry</span><span>Floral</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1170,9 +1367,19 @@
             <div class="product-notes">
               <span>Rich</span><span>Herbal</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.95</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $18.25</span>
+                <span class="pack-pill">Case (12): $49.50</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.95
               </a>
             </div>
           </div>
@@ -1190,9 +1397,19 @@
             <div class="product-notes">
               <span>Delicate</span><span>Minty</span><span>Low Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1233,9 +1450,19 @@
             <div class="product-notes">
               <span>Tart</span><span>Floral</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1252,9 +1479,19 @@
             <div class="product-notes">
               <span>Soft</span><span>Calming</span><span>Low Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.95</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $18.25</span>
+                <span class="pack-pill">Case (12): $49.50</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.95
               </a>
             </div>
           </div>
@@ -1271,9 +1508,19 @@
             <div class="product-notes">
               <span>Sweet</span><span>Herbal</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1290,9 +1537,19 @@
             <div class="product-notes">
               <span>Bold</span><span>Romantic</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.95</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $18.25</span>
+                <span class="pack-pill">Case (12): $49.50</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.95
               </a>
             </div>
           </div>
@@ -1333,9 +1590,19 @@
             <div class="product-notes">
               <span>Earthy</span><span>Warming</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1352,9 +1619,19 @@
             <div class="product-notes">
               <span>Warm</span><span>Spiced</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1371,9 +1648,19 @@
             <div class="product-notes">
               <span>Sharp</span><span>Spicy</span><span>High Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.75</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $17.50</span>
+                <span class="pack-pill">Case (12): $48.00</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.75
               </a>
             </div>
           </div>
@@ -1391,9 +1678,19 @@
             <div class="product-notes">
               <span>Spicy</span><span>Citrusy</span><span>Medium Fizz</span>
             </div>
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-main">$4.95</span>
+                <span class="price-size">16 oz (473ml)</span>
+              </div>
+              <div class="price-packs">
+                <span class="pack-pill">4-Pack: $18.25</span>
+                <span class="pack-pill">Case (12): $49.50</span>
+              </div>
+            </div>
             <div class="product-footer">
               <a href="contact.html" class="product-btn">
-                <i class="fas fa-envelope"></i> Enquire About This Flavor
+                <i class="fas fa-shopping-bag"></i> Order For Pickup &bull; $4.95
               </a>
             </div>
           </div>
@@ -1427,26 +1724,42 @@
     <div class="footer-container">
       <div class="footer-box">
         <a href="index.html" class="footer-logo-link" onclick="scrollToTop()">
-          <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="logoRingF" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#52b788"/>
-                <stop offset="100%" stop-color="#2d6a4f"/>
+              <radialGradient id="logoBgF" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="70%" stop-color="#1b4332"/>
+                <stop offset="100%" stop-color="#0a1d14"/>
+              </radialGradient>
+              <linearGradient id="logoGoldF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fcd34d"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#d97706"/>
               </linearGradient>
-              <linearGradient id="logoBottleF" x1="50%" y1="100%" x2="50%" y2="0%">
-                <stop offset="0%" stop-color="#1b4332"/>
-                <stop offset="55%" stop-color="#2d6a4f"/>
-                <stop offset="100%" stop-color="#52b788"/>
+              <linearGradient id="logoLeafF" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#74c69d"/>
+              </linearGradient>
+              <linearGradient id="logoBottleF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#52b788"/>
+                <stop offset="50%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#143728"/>
               </linearGradient>
             </defs>
-            <circle cx="24" cy="24" r="21" fill="url(#logoRingF)"/>
-            <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-            <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleF)"/>
-            <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleF)"/>
-            <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-            <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-            <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-            <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+            <circle cx="24" cy="24" r="22" stroke="url(#logoGoldF)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+            <circle cx="24" cy="24" r="20" fill="url(#logoBgF)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+            <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldF)"/>
+            <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+            <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleF)"/>
+            <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldF)" opacity="0.88"/>
+            <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+            <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+            <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldF)"/>
           </svg>
           <span class="logo-text">
             <span class="logo-script">Craft</span>

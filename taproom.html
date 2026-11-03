@@ -39,17 +39,34 @@
     [data-theme="dark"] {
       --bg-primary: #0d1f17;
       --bg-secondary: #0a1810;
-      --text-primary: #e8f5ec;
-      --text-secondary: #9dbfa9;
-      --text-light: #5a7a68;
-      --border-color: #1c3326;
+      --text-primary: #f0fdf4;
+      --text-secondary: #a3c9b3;
+      --text-light: #7da58e;
+      --border-color: #1f3d2e;
+      --accent: #52b788;
+      --accent-light: #74c69d;
+      --accent-dark: #95d5b2;
+      --accent-soft: #142e21;
       --shadow: rgba(0, 0, 0, 0.6);
-      --card-bg: #0d1f17;
+      --card-bg: #11281e;
       --section-bg: #0a1810;
       --navbar-bg: #0d1f17;
       --navbar-border: #1c3326;
-      --accent-soft: #14291d;
       --logo-caps-color: #a8f0c6;
+    }
+
+    [data-theme="dark"] .section-header h2 span,
+    [data-theme="dark"] .taproom-exp-content h2 em,
+    [data-theme="dark"] .info-card h4,
+    [data-theme="dark"] .tap-item-num,
+    [data-theme="dark"] .event-card .event-date {
+      color: #52b788 !important;
+    }
+    [data-theme="dark"] .eyebrow,
+    [data-theme="dark"] .hero-eyebrow {
+      background: #142e21;
+      color: #52b788;
+      border: 1px solid rgba(82, 183, 136, 0.35);
     }
 
     [dir="rtl"] { text-align: right; }
@@ -264,12 +281,14 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      padding: 5rem 0 4.5rem;
+      min-height: 480px;
+      padding: 5rem 0;
       background-image: url("images/hero 5.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+      box-sizing: border-box;
     }
     .taproom-hero::before {
       content: '';
@@ -352,19 +371,19 @@
     .taproom-btn-secondary:hover { background: rgba(255, 255, 255, 0.25); border-color: #fff; }
 
     @media (max-width: 1024px) {
-      .taproom-hero { background-attachment: scroll; }
+      .taproom-hero { background-attachment: scroll; min-height: 440px; }
     }
     @media (max-width: 767px) {
-      .taproom-hero { padding: 3.5rem 1.2rem 3rem; }
-      .taproom-hero h1 { font-size: 2rem; }
-      .taproom-hero p { font-size: 0.92rem; }
+      .taproom-hero { min-height: 380px; padding: 3.5rem 1.2rem 3rem; }
+      .taproom-hero h1 { font-size: 2.2rem; }
+      .taproom-hero p { font-size: 0.95rem; }
       .taproom-hero-buttons { flex-direction: column; align-items: center; width: 100%; }
       .taproom-btn-primary, .taproom-btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
     }
     @media (max-width: 480px) {
-      .taproom-hero { padding: 2.5rem 1rem 2.5rem; }
-      .taproom-hero h1 { font-size: 1.6rem; }
-      .taproom-hero p { font-size: 0.85rem; }
+      .taproom-hero { min-height: 320px; padding: 2.5rem 1rem 2.5rem; }
+      .taproom-hero h1 { font-size: 1.75rem; }
+      .taproom-hero p { font-size: 0.88rem; }
     }
 
     /* ===================================================== */
@@ -426,6 +445,250 @@
       color: var(--text-primary);
       margin-bottom: 0.2rem;
     }
+    
+    /* ===== INFO CARD IMAGES (replacing icons) ===== */
+    .info-card .info-img {
+      width: 100%;
+      height: 120px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .info-card .info-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .info-card:hover .info-img img {
+      transform: scale(1.08);
+    }
+
+    /* ===== LIVE TAP BOARD SECTION ===== */
+    .tapboard-section {
+      padding: 4.5rem 0;
+      background: var(--section-bg);
+      transition: background var(--transition);
+    }
+    .tapboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .tap-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.3s ease;
+    }
+    .tap-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px var(--shadow);
+    }
+    .tap-item-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      width: 50px; height: 50px;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .tap-item-details { flex: 1; }
+    .tap-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .tap-item-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .tap-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 60px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--highlight-dark);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    [data-theme="dark"] .tap-badge { color: var(--highlight); }
+    .tap-item-details p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+    .tap-item-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+    .tap-item-meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+    .tap-sizes-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: 0 6px 22px var(--shadow);
+    }
+    .tap-size-col { text-align: center; }
+    .tap-size-col .size-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+    .tap-size-col .size-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    [data-theme="dark"] .tap-size-col .size-price { color: #52b788; }
+    .tap-size-col .size-note {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ===== EVENTS & WORKSHOPS SECTION ===== */
+    .events-section {
+      padding: 4.5rem 0;
+      background: var(--bg-primary);
+      transition: background var(--transition);
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+    .event-card-img {
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .event-card:hover .event-card-img img {
+      transform: scale(1.08);
+    }
+    .event-pill {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(27, 67, 50, 0.9);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 60px;
+      letter-spacing: 1px;
+    }
+    .event-body {
+      padding: 1.6rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-body .event-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .event-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .event-body p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+    .event-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.65rem 1.2rem;
+      border-radius: 60px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: 0.25s;
+      border: 1px solid var(--border-color);
+    }
+    .event-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 1024px) {
+      .tapboard-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .events-grid { grid-template-columns: 1fr; }
+      .tap-sizes-box { flex-direction: column; gap: 1rem; }
+    }
+
     .info-card span {
       font-size: 0.78rem;
       color: var(--text-secondary);
@@ -440,7 +703,251 @@
       .info-card { padding: 1.2rem 1rem; border-radius: 16px; }
       .info-card .info-icon { width: 44px; height: 44px; font-size: 1.1rem; margin-bottom: 0.7rem; }
       .info-card p { font-size: 0.85rem; }
-      .info-card span { font-size: 0.7rem; }
+      
+    /* ===== INFO CARD IMAGES (replacing icons) ===== */
+    .info-card .info-img {
+      width: 100%;
+      height: 120px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .info-card .info-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .info-card:hover .info-img img {
+      transform: scale(1.08);
+    }
+
+    /* ===== LIVE TAP BOARD SECTION ===== */
+    .tapboard-section {
+      padding: 4.5rem 0;
+      background: var(--section-bg);
+      transition: background var(--transition);
+    }
+    .tapboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .tap-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.3s ease;
+    }
+    .tap-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px var(--shadow);
+    }
+    .tap-item-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      width: 50px; height: 50px;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .tap-item-details { flex: 1; }
+    .tap-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .tap-item-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .tap-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 60px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--highlight-dark);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    [data-theme="dark"] .tap-badge { color: var(--highlight); }
+    .tap-item-details p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+    .tap-item-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+    .tap-item-meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+    .tap-sizes-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: 0 6px 22px var(--shadow);
+    }
+    .tap-size-col { text-align: center; }
+    .tap-size-col .size-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+    .tap-size-col .size-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    [data-theme="dark"] .tap-size-col .size-price { color: #52b788; }
+    .tap-size-col .size-note {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ===== EVENTS & WORKSHOPS SECTION ===== */
+    .events-section {
+      padding: 4.5rem 0;
+      background: var(--bg-primary);
+      transition: background var(--transition);
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+    .event-card-img {
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .event-card:hover .event-card-img img {
+      transform: scale(1.08);
+    }
+    .event-pill {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(27, 67, 50, 0.9);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 60px;
+      letter-spacing: 1px;
+    }
+    .event-body {
+      padding: 1.6rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-body .event-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .event-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .event-body p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+    .event-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.65rem 1.2rem;
+      border-radius: 60px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: 0.25s;
+      border: 1px solid var(--border-color);
+    }
+    .event-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 1024px) {
+      .tapboard-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .events-grid { grid-template-columns: 1fr; }
+      .tap-sizes-box { flex-direction: column; gap: 1rem; }
+    }
+
+    .info-card span { font-size: 0.7rem; }
     }
     @media (max-width: 480px) {
       .info-strip { grid-template-columns: 1fr; }
@@ -951,26 +1458,42 @@
   <nav class="navbar">
     <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; width:100%; padding:0;">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBg" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottle" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeaf" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottle" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRing)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottle)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottle)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGold)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBg)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeaf)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGold)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottle)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGold)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGold)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1013,26 +1536,42 @@
   <div class="mobile-nav-drawer" id="mobileNav">
     <div class="drawer-header">
       <a href="index.html" class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="logoRingM" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#52b788"/>
-              <stop offset="100%" stop-color="#2d6a4f"/>
+            <radialGradient id="logoBgM" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="70%" stop-color="#1b4332"/>
+              <stop offset="100%" stop-color="#0a1d14"/>
+            </radialGradient>
+            <linearGradient id="logoGoldM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fcd34d"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
-            <linearGradient id="logoBottleM" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="#1b4332"/>
-              <stop offset="55%" stop-color="#2d6a4f"/>
-              <stop offset="100%" stop-color="#52b788"/>
+            <linearGradient id="logoLeafM" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#74c69d"/>
+            </linearGradient>
+            <linearGradient id="logoBottleM" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#52b788"/>
+              <stop offset="50%" stop-color="#2d6a4f"/>
+              <stop offset="100%" stop-color="#143728"/>
             </linearGradient>
           </defs>
-          <circle cx="24" cy="24" r="21" fill="url(#logoRingM)"/>
-          <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-          <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleM)"/>
-          <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleM)"/>
-          <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-          <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-          <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-          <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+          <circle cx="24" cy="24" r="22" stroke="url(#logoGoldM)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+          <circle cx="24" cy="24" r="20" fill="url(#logoBgM)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+          <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafM)" opacity="0.95"/>
+          <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldM)"/>
+          <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+          <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleM)"/>
+          <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldM)" opacity="0.88"/>
+          <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+          <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+          <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+          <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldM)"/>
         </svg>
         <span class="logo-text">
           <span class="logo-script">Craft</span>
@@ -1096,31 +1635,39 @@
       <div class="info-strip">
 
         <div class="info-card">
-          <div class="info-icon"><i class="fas fa-beer"></i></div>
+          <div class="info-img">
+            <img src="images/taproom-taps.jpg" alt="12 Rotating Kombucha Taps">
+          </div>
           <h4>On Tap</h4>
           <p>12 Rotating Taps</p>
-          <span>New flavors every week</span>
+          <span>New small batches weekly</span>
         </div>
 
         <div class="info-card">
-          <div class="info-icon"><i class="fas fa-wine-glass-alt"></i></div>
+          <div class="info-img">
+            <img src="images/taproom-flights.jpg" alt="Kombucha Tasting Flight Boards">
+          </div>
           <h4>Tasting Flights</h4>
-          <p>4 Pours · Your Choice</p>
-          <span>Perfect for first-timers</span>
+          <p>4 Pours &bull; Your Choice</p>
+          <span>Perfect for exploring flavors</span>
         </div>
 
         <div class="info-card">
-  <div class="info-icon"><i class="fas fa-wine-bottle"></i></div>
-  <h4>Growler Refills</h4>
-  <p>Bring Your Own</p>
-  <span>Save 20% vs bottles</span>
-</div>
+          <div class="info-img">
+            <img src="images/taproom-growler.jpg" alt="Growler and Crowler Refills">
+          </div>
+          <h4>Growler Refills</h4>
+          <p>Bring Your Own Jug</p>
+          <span>Save 20% vs single bottles</span>
+        </div>
 
         <div class="info-card">
-          <div class="info-icon"><i class="fas fa-dog"></i></div>
+          <div class="info-img">
+            <img src="images/gallery-4.jpg" alt="Sunny Dog Friendly Taproom Patio">
+          </div>
           <h4>Dog Friendly</h4>
           <p>Pups Welcome</p>
-          <span>Treats on the house</span>
+          <span>Sunny garden patio &amp; treats</span>
         </div>
 
       </div>
@@ -1128,6 +1675,206 @@
   </section>
 
   <!-- ============================================ -->
+  
+  <!-- ============================================ -->
+  <!-- ===== LIVE TAP BOARD (What's Pouring) ======= -->
+  <!-- ============================================ -->
+  <section class="tapboard-section" id="taplist">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-beer"></i> Live Draft Menu</span>
+        <h2>Currently <span>On Tap Today</span></h2>
+        <p>Poured cold at 38&deg;F straight from our conditioning tanks. Always raw, probiotic-rich, and naturally bubbly.</p>
+      </div>
+
+      <div class="tapboard-grid">
+
+        <div class="tap-item">
+          <div class="tap-item-num">01</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Ginger Lemon Sunrise</h3>
+              <span class="tap-badge">House Flagship</span>
+            </div>
+            <p>Cold-pressed organic ginger root, fresh Meyer lemon, and clover honey. Crisp, zingy, and bright.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.4% ABV</span>
+              <span><i class="fas fa-fire"></i> High Fizz</span>
+              <span><i class="fas fa-check-circle"></i> On Tap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-item">
+          <div class="tap-item-num">02</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Wild Raspberry Hibiscus</h3>
+              <span class="tap-badge">Fan Favorite</span>
+            </div>
+            <p>Whole Scottish raspberries steeped with Egyptian hibiscus flower. Ruby red, tart, and floral.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.3% ABV</span>
+              <span><i class="fas fa-fire"></i> Velvet Fizz</span>
+              <span><i class="fas fa-check-circle"></i> On Tap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-item">
+          <div class="tap-item-num">03</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Blood Orange Basil</h3>
+              <span class="tap-badge">Seasonal Tap</span>
+            </div>
+            <p>Sicilian blood orange juice paired with garden-picked sweet Italian basil. Citrusy and complex.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.3% ABV</span>
+              <span><i class="fas fa-fire"></i> Crisp Fizz</span>
+              <span><i class="fas fa-check-circle"></i> Fresh Keg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-item">
+          <div class="tap-item-num">04</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Turmeric Orange Glow</h3>
+              <span class="tap-badge">Wellness Pick</span>
+            </div>
+            <p>Fresh-pressed golden turmeric root, orange peel, and cracked black pepper for maximum absorption.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.4% ABV</span>
+              <span><i class="fas fa-fire"></i> Medium Fizz</span>
+              <span><i class="fas fa-check-circle"></i> On Tap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-item">
+          <div class="tap-item-num">05</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Blueberry Elderflower</h3>
+              <span class="tap-badge">Limited Batch</span>
+            </div>
+            <p>Wild mountain blueberries and delicate European elderflower blossom. Gentle, fragrant, and soothing.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.2% ABV</span>
+              <span><i class="fas fa-fire"></i> Gentle Fizz</span>
+              <span><i class="fas fa-check-circle"></i> On Tap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-item">
+          <div class="tap-item-num">06</div>
+          <div class="tap-item-details">
+            <div class="tap-item-header">
+              <h3>Cardamom Chai Oak Reserve</h3>
+              <span class="tap-badge">Taproom Exclusive</span>
+            </div>
+            <p>Green cardamom pods, crushed cinnamon, and whole cloves conditioned on French oak spirals.</p>
+            <div class="tap-item-meta">
+              <span><i class="fas fa-tint"></i> 0.5% ABV</span>
+              <span><i class="fas fa-fire"></i> Warm Fizz</span>
+              <span><i class="fas fa-check-circle"></i> Brewer's Pick</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pour Sizes Box -->
+      <div class="tap-sizes-box">
+        <div class="tap-size-col">
+          <div class="size-title">Tasting Flight Board</div>
+          <div class="size-price">$12.00</div>
+          <div class="size-note">4 &times; 4 oz pours of any tap</div>
+        </div>
+        <div class="tap-size-col">
+          <div class="size-title">Full Pint Pour</div>
+          <div class="size-price">$6.50</div>
+          <div class="size-note">16 oz frosted glassware</div>
+        </div>
+        <div class="tap-size-col">
+          <div class="size-title">32 oz Can Crowler</div>
+          <div class="size-price">$11.00</div>
+          <div class="size-note">Seamed cold to take home</div>
+        </div>
+        <div class="tap-size-col">
+          <div class="size-title">64 oz Growler Refill</div>
+          <div class="size-price">$18.00</div>
+          <div class="size-note">Bring your own / new jugs $6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ===== WEEKLY HAPPENINGS & WORKSHOPS ======== -->
+  <!-- ============================================ -->
+  <section class="events-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-calendar-alt"></i> Events &amp; Workshops</span>
+        <h2>What's Happening <span>At The Taproom</span></h2>
+        <p>There's always something fermenting at Craft Kombucha. Drop by for trivia, live music, or learn to brew your own.</p>
+      </div>
+
+      <div class="events-grid">
+
+        <div class="event-card">
+          <div class="event-card-img">
+            <span class="event-pill">Every Thursday</span>
+            <img src="images/taproom-flights.jpg" alt="Thursday Trivia & Flight Night">
+          </div>
+          <div class="event-body">
+            <span class="event-date">Thursday &bull; 7:00 PM – 9:30 PM</span>
+            <h3>Thursday Trivia &amp; Flight Night</h3>
+            <p>Gather your crew for pop culture and foodie trivia. Flight specials all night and winning teams take home free 4-packs!</p>
+            <a href="contact.html" class="event-btn">
+              <i class="fas fa-chair"></i> Reserve a Table
+            </a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-img">
+            <span class="event-pill">Hands-On Class</span>
+            <img src="images/process-intro.jpg" alt="SCOBY & Kombucha Masterclass">
+          </div>
+          <div class="event-body">
+            <span class="event-date">Alternate Saturdays &bull; 11:00 AM</span>
+            <h3>SCOBY &amp; Fermentation Masterclass</h3>
+            <p>Learn small-batch brewing secrets directly from our head brewer. Includes your own live SCOBY, glass gallon jar, and starter tea kit.</p>
+            <a href="contact.html" class="event-btn">
+              <i class="fas fa-ticket-alt"></i> Book Workshop Spot
+            </a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-img">
+            <span class="event-pill">Weekend Chill</span>
+            <img src="images/gallery-2.jpg" alt="Sunday Acoustic Garden Sessions">
+          </div>
+          <div class="event-body">
+            <span class="event-date">Sundays &bull; 2:00 PM – 6:00 PM</span>
+            <h3>Sunday Acoustic &amp; Growler Day</h3>
+            <p>Unwind on our patio with live acoustic sets from local artists. Enjoy $3 off all 64 oz growler fills and complimentary dog treats.</p>
+            <a href="contact.html" class="event-btn">
+              <i class="fas fa-map-marker-alt"></i> Plan Your Visit
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 3. TAPROOM GALLERY ================= -->
   <!-- ============================================ -->
   <section class="gallery-section" id="gallery">
@@ -1233,26 +1980,42 @@
     <div class="footer-container">
       <div class="footer-box">
         <a href="index.html" class="footer-logo-link" onclick="scrollToTop()">
-          <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="logoRingF" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#52b788"/>
-                <stop offset="100%" stop-color="#2d6a4f"/>
+              <radialGradient id="logoBgF" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="70%" stop-color="#1b4332"/>
+                <stop offset="100%" stop-color="#0a1d14"/>
+              </radialGradient>
+              <linearGradient id="logoGoldF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fcd34d"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#d97706"/>
               </linearGradient>
-              <linearGradient id="logoBottleF" x1="50%" y1="100%" x2="50%" y2="0%">
-                <stop offset="0%" stop-color="#1b4332"/>
-                <stop offset="55%" stop-color="#2d6a4f"/>
-                <stop offset="100%" stop-color="#52b788"/>
+              <linearGradient id="logoLeafF" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#74c69d"/>
+              </linearGradient>
+              <linearGradient id="logoBottleF" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#52b788"/>
+                <stop offset="50%" stop-color="#2d6a4f"/>
+                <stop offset="100%" stop-color="#143728"/>
               </linearGradient>
             </defs>
-            <circle cx="24" cy="24" r="21" fill="url(#logoRingF)"/>
-            <circle cx="24" cy="24" r="17.5" fill="#f0f9f4"/>
-            <rect x="20" y="12" width="8" height="4" rx="1" fill="url(#logoBottleF)"/>
-            <path d="M19 16 L19 20 Q16 22 16 26 L16 36 Q16 39 19 39 L29 39 Q32 39 32 36 L32 26 Q32 22 29 20 L29 16 Z" fill="url(#logoBottleF)"/>
-            <circle cx="21" cy="29" r="1.4" fill="#f59e0b"/>
-            <circle cx="26" cy="31" r="1.1" fill="#f59e0b"/>
-            <circle cx="24" cy="25" r="0.9" fill="#f59e0b"/>
-            <circle cx="27" cy="24" r="1.2" fill="#f59e0b"/>
+            <circle cx="24" cy="24" r="22" stroke="url(#logoGoldF)" stroke-width="1.5" stroke-dasharray="2.5 1.5"/>
+            <circle cx="24" cy="24" r="20" fill="url(#logoBgF)" stroke="rgba(255,255,255,0.2)" stroke-width="0.75"/>
+            <path d="M11 29 C11 23, 17 21, 21 24 C17 26, 15 31, 11 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <path d="M37 29 C37 23, 31 21, 27 24 C31 26, 33 31, 37 29 Z" fill="url(#logoLeafF)" opacity="0.95"/>
+            <rect x="22" y="10" width="4" height="2" rx="0.8" fill="url(#logoGoldF)"/>
+            <rect x="22.5" y="12" width="3" height="3.5" fill="#a8f0c6"/>
+            <path d="M22.5 15.5 C20 17.5, 17.5 19.5, 17.5 23.5 L17.5 33.5 C17.5 35.8 19.3 37 21.5 37 L26.5 37 C28.7 37 30.5 35.8 30.5 33.5 L30.5 23.5 C30.5 19.5, 28 17.5, 25.5 15.5 Z" fill="url(#logoBottleF)"/>
+            <path d="M19 24.5 C19 22.5, 21 21, 24 21 C27 21, 29 22.5, 29 24.5 L29 33 C29 34.5 28 35.5 26.5 35.5 L21.5 35.5 C20 35.5 19 34.5 19 33 Z" fill="url(#logoGoldF)" opacity="0.88"/>
+            <circle cx="22.5" cy="31.5" r="1" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.5" cy="28.5" r="0.85" fill="#ffffff" opacity="0.95"/>
+            <circle cx="23" cy="25.5" r="0.7" fill="#ffffff" opacity="0.95"/>
+            <circle cx="25.2" cy="23" r="0.6" fill="#ffffff"/>
+            <path d="M19.5 24.5 L19.5 32 C19.5 33.5 20 34.2 20.8 34.5" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M24 6.5 L24.6 8 L26.1 8.6 L24.6 9.2 L24 10.7 L23.4 9.2 L21.9 8.6 L23.4 8 Z" fill="url(#logoGoldF)"/>
           </svg>
           <span class="logo-text">
             <span class="logo-script">Craft</span>
